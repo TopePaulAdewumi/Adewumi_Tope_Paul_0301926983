@@ -26,7 +26,7 @@ I used a temporary counter on reservation to test COMMIT, ROLLBACK and READ COMM
 
 ## Portfolio 4: NoSQL and Advanced Data Models
 
-I used reservation_events for the case's event documents. MongoDB inserted 2 sample events and returned the expected results for 4 queries. Validation rejected an invalid date type and a duplicate event ID. Embedded snapshots keep related details with an event, while the details field can differ by event type. These are fictional events; PostgreSQL continues to enforce its relational rules.
+I used reservation events for the case's event documents. MongoDB inserted 2 sample events and returned the expected results for 4 queries. Validation rejected an invalid date type and a duplicate event ID. Embedded snapshots keep related details with an event, while the details field can differ by event type. These are fictional events; PostgreSQL continues to enforce its relational rules.
 
 ## Repository and evidence
 
@@ -43,7 +43,7 @@ I proposed three MongoDB replica members across separate failure zones. The disc
 
 ## Individual reflection
 
-I kept guest, room, reservation in separate tables so their details could be maintained without repeating them in every related record. At most one confirmed reservation may use a room for a given check-in date; enforce a partial unique constraint on room_id and check_in where status equals confirmed. The constraint tests check this alongside the required values and record links. One issue illustrated by the two-session exercise is that both sessions can read the same value before either update is committed. Locking the row before reading preserves both increments. The index comparison also shows why I need to check the execution plan as well as the final answer: the same result can require different amounts of database work.
+I kept guest, room, reservation in separate tables so their details could be maintained without repeating them in every related record. At most one confirmed reservation may use a room for a given check-in date; enforce a partial unique constraint on room id and check in where status equals confirmed. The constraint tests check this alongside the required values and record links. One issue illustrated by the two-session exercise is that both sessions can read the same value before either update is committed. Locking the row before reading preserves both increments. The index comparison also shows why I need to check the execution plan as well as the final answer: the same result can require different amounts of database work.
 
 ## AI-use declaration
 
